@@ -22,8 +22,11 @@ sfRectangleShape *createCell(sfVector2f size, sfVector2f position, unsigned shor
     return square;
 };
 
-int **cellsMatrix_create(unsigned int cols, unsigned int rows)
+int **cellsMatrix_create()
 {
+    int cols = BOARD_COLS;
+    int rows = BOARD_ROWS;
+
     int **cellsMatrix = (int **)malloc(rows * sizeof(int *));
 
     if (cellsMatrix == NULL)

@@ -5,8 +5,8 @@
 
 const int BOARD_POSITION_X = 10;
 const int BOARD_POSITION_Y = 10;
-const int BOARD_COLS = 10;
-const int BOARD_ROWS = 10;
+const int BOARD_COLS = 65;
+const int BOARD_ROWS = 50;
 
 bool isBoardClicked(sfVector2i mousePosition)
 {
