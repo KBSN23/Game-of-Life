@@ -15,7 +15,7 @@ sfRectangleShape *createCell(sfVector2f size, sfVector2f position, unsigned shor
         sfRectangleShape_setFillColor(square, CELL_COLOR_ALIVE);
     else
         sfRectangleShape_setFillColor(square, CELL_COLOR_DEFAULT);
-    sfRectangleShape_setOutlineColor(square, sfBlack);
+    sfRectangleShape_setOutlineColor(square, CELL_OUTLINE_COLOR);
     sfRectangleShape_setPosition(square, position);
 
     return square;

@@ -24,7 +24,7 @@ void drawRandBtn(sfRenderWindow *window, bool disabled)
     {
         sfText *randBtnText = sfText_create();
         sfText_setFont(randBtnText, font);
-        sfText_setString(randBtnText, "Losuj");
+        sfText_setString(randBtnText, "Random");
         sfText_setColor(randBtnText, disabled ? BTN_DISABLED_TEXT_COLOR : sfBlack);
         sfVector2f randBtnTextPosition = {RANDBTN_POSITION_X + 55, RANDBTN_POSITION_Y + 5};
         sfText_setCharacterSize(randBtnText, 16);

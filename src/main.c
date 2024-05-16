@@ -40,12 +40,27 @@ int main()
                     }
                     else if (isRandBtnClicked(mousePosition))
                     {
-                        handleRandBtnClick(cellsMatrix);
+
+                        if (simulation.isPaused)
+                            handleRandBtnClick(cellsMatrix);
                     }
                     else if (isSimBtnClicked(mousePosition))
                     {
                         handleSimBtnClick(&simulation);
                         sfThread_launch(thread);
+                    }
+                    else if (isResetBtnClicked(mousePosition))
+                    {
+                        if (simulation.isPaused)
+                            handleResetBtnClick(cellsMatrix);
+                    }
+                    else if (isIncreaseBtnClicked(mousePosition))
+                    {
+                        increaseSpeed(&simulation);
+                    }
+                    else if (isDecreaseBtnClicked(mousePosition))
+                    {
+                        decreaseSpeed(&simulation);
                     }
                 }
             }
@@ -54,7 +69,11 @@ int main()
         sfRenderWindow_clear(window, sfWhite);
         drawBoard(window, cellsMatrix);
         drawRandBtn(window, !simulation.isPaused);
+        drawResetBtn(window, !simulation.isPaused);
         drawSimBtn(window, simulation);
+        drawSpeedIncreaseBtn(window, simulation.speed == 20);
+        drawSpeedDecreaseBtn(window, simulation.speed == 1);
+        drawSpeedDisplayText(window, simulation);
         sfRenderWindow_display(window);
     }
 
