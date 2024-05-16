@@ -4,16 +4,21 @@
 #include "include/board.h"
 #include "include/cell.h"
 #include "include/randbtn.h"
+#include "include/simulation.h"
 #include <time.h>
 
 int main()
 {
+
     srand(time(NULL));
 
     sfVideoMode mode = {WINDOW_WIDTH, WINDOW_HEIGHT, 32};
     sfRenderWindow *window = sfRenderWindow_create(mode, "Game of Life", sfClose, NULL);
-
     int **cellsMatrix = cellsMatrix_create();
+
+    simState simulation = initSimulation();
+    nextTickArgs args = {cellsMatrix, &simulation};
+    sfThread *thread = sfThread_create(nextTick, &args);
 
     while (sfRenderWindow_isOpen(window))
     {
@@ -37,13 +42,19 @@ int main()
                     {
                         handleRandBtnClick(cellsMatrix);
                     }
+                    else if (isSimBtnClicked(mousePosition))
+                    {
+                        handleSimBtnClick(&simulation);
+                        sfThread_launch(thread);
+                    }
                 }
             }
         }
 
         sfRenderWindow_clear(window, sfWhite);
         drawBoard(window, cellsMatrix);
-        drawRandBtn(window);
+        drawRandBtn(window, !simulation.isPaused);
+        drawSimBtn(window, simulation);
         sfRenderWindow_display(window);
     }
 

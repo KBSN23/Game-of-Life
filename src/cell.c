@@ -1,11 +1,10 @@
 
 #include "include/cell.h"
 #include "include/board.h"
+#include "include/colors.h"
 #include <stdlib.h>
 
 const float CELL_SIZE = 15.f;
-const sfColor CELL_COLOR_ALIVE = {26, 110, 26, 255};
-const sfColor CELL_COLOR_DEFAULT = {214, 212, 212, 255};
 
 sfRectangleShape *createCell(sfVector2f size, sfVector2f position, unsigned short alive)
 {

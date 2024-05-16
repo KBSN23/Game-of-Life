@@ -1,31 +1,32 @@
 #include "include/randbtn.h"
 #include "include/functions.h"
 #include "include/board.h"
+#include "include/colors.h"
 
 const int RANDBTN_POSITION_X = 50;
 const int RANDBTN_POSITION_Y = 800;
 const sfVector2f RANDBTN_SIZE = {150, 30};
 
-void drawRandBtn(sfRenderWindow *window)
+void drawRandBtn(sfRenderWindow *window, bool disabled)
 {
     sfRectangleShape *randBtn = sfRectangleShape_create();
     sfVector2f randBtnPosition = {RANDBTN_POSITION_X, RANDBTN_POSITION_Y};
+
     sfRectangleShape_setSize(randBtn, RANDBTN_SIZE);
     sfRectangleShape_setOutlineThickness(randBtn, 1.f);
-    sfRectangleShape_setFillColor(randBtn, sfWhite);
-    sfRectangleShape_setOutlineColor(randBtn, sfBlack);
+    sfRectangleShape_setFillColor(randBtn, disabled ? BTN_DISABLED_FILL_COLOR : BTN_FILL_COLOR);
+    sfRectangleShape_setOutlineColor(randBtn, disabled ? BTN_DISABLED_TEXT_COLOR : BTN_OUTLINE_COLOR);
     sfRectangleShape_setPosition(randBtn, randBtnPosition);
 
     sfFont *font = sfFont_createFromFile("./assets/arial.ttf");
 
     if (font != NULL)
     {
-
         sfText *randBtnText = sfText_create();
         sfText_setFont(randBtnText, font);
         sfText_setString(randBtnText, "Losuj");
-        sfText_setColor(randBtnText, sfBlack);
-        sfVector2f randBtnTextPosition = {RANDBTN_POSITION_X + 16, RANDBTN_POSITION_Y};
+        sfText_setColor(randBtnText, disabled ? BTN_DISABLED_TEXT_COLOR : sfBlack);
+        sfVector2f randBtnTextPosition = {RANDBTN_POSITION_X + 55, RANDBTN_POSITION_Y + 5};
         sfText_setCharacterSize(randBtnText, 16);
         sfText_setPosition(randBtnText, randBtnTextPosition);
 

@@ -17,6 +17,6 @@ foreach ($sourceFile in $sourceFilesList) {
     $gccCommand += " '$sourceFile' "
 }
 
-$gccCommand += " -lcsfml-graphics -lcsfml-window -o $outPath\program"
+$gccCommand += " -lcsfml-graphics -lcsfml-window -lcsfml-system -o $outPath\program"
 
 Invoke-Expression $gccCommand
